@@ -1,0 +1,29 @@
+h1{
+    text-align: center;
+    color: crimson;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+p{
+    
+    color: red;
+}
+
+.loginform{
+/* background-color: blue; */
+/* background-image: url('https://w0.peakpx.com/wallpaper/955/713/HD-wallpaper-doctor-medical.jpg');
+ background-repeat: no-repeat; */
+ 
+ padding: 25px;
+ background: url('https://thumbs.dreamstime.com/b/medicine-doctor-holding-red-heart-shape-hand-medical-icon-network-connection-modern-virtual-screen-interface-service-mind-99681240.jpg');
+ background-repeat: no-repeat;
+ background-size: auto;
+ height: 100%;
+ opacity: 1;
+}
+
+
+.imgstyle{
+    margin-top: 50px;
+}

@@ -1,0 +1,68 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    
+<lightning-card>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+            <img src="https://satsang-foundation.org/wp-content/uploads/2021/09/Swasthya-Hospital-TSF.jpg">
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            
+            <div class="mapstyle">
+                <h1>Global Presence </h1>
+                <p>314 N. Lake St, Suite 6, Aurora,</p>
+                <p> USA, IL 60506,</p>
+                <p>sales@swarmhr.com</p>
+                <p> +1 630-448-6681</p>
+              <br>
+              <br>
+                
+            <lightning-map map-markers={mapMarkers}> </lightning-map>
+        </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="slds-grid slds-wrap">
+
+        <div class="slds-col slds-size_1-of-2">
+            <br>
+            <h1>Contact Us</h1>
+            <div class="contactform">
+<lightning-input placeholder="Enter Your Name" onchange={nameChange} required="true"></lightning-input>
+<lightning-input placeholder="Enter Your Phone number" onchange={phoneChange} required="true" ></lightning-input>
+<lightning-input placeholder="Enter Your Email" onchange={emailChange} pattern="[A-Za-z0-9._-]+@[a-z0-9-]+.[a-z]{2,}$" message-when-pattern-mismatch="Please enter a valid email" required="true"></lightning-input>
+<lightning-input placeholder="Enter Your Subject" onchange={subjectChange} required="true"></lightning-input>
+<br>
+<div class="slds-form-element__control">
+    <textarea id="horizontal-input-id-02" placeholder="Enter Your Message" onchange={messageChange} class="slds-textarea" ></textarea>
+</div>
+<div class="errormsg">
+  <p>{errormessage}</p>
+</div>
+
+
+<lightning-button label="Send Message" onclick={handleClick}></lightning-button>
+            </div>
+          </div>
+          <div class="slds-col slds-size_1-of-2">
+              <div class="lastimg">
+           <img src="https://www.rameshhospitals.com/assets/images/ContactUs/ContactUsBanner.jpg">
+        </div>
+        </div>
+
+      </div>
+
+
+    </lightning-card>
+
+
+
+
+
+
+
+</template>

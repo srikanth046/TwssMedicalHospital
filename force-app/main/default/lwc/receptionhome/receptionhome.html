@@ -1,0 +1,118 @@
+<template>
+   <div class="receptionstyle">
+
+    <h2> Welcome To TWSS Medical Hospital</h2>
+    
+    <div class="slds-grid slds-gutters">
+      
+        <br><br>
+        <div class="slds-col abc">
+        <span></span>
+        </div>
+        <div class="slds-col abc">
+            <div style="width: 50%; height: 50%;  float:left;"> <lightning-input placeholder="Search Doctor Availability" onchange={doctornamechange}></lightning-input></div>
+            <div style="width: 50%; height: 50%; float:right;margin-top:20px">&emsp;  <lightning-button icon-name='utility:search' label="Search Doctor" onclick={searchDoctorClick}></lightning-button></div>
+           <br>
+           
+            <p style="margin-top: 50px;"> {searchDoctorStatus}</p>
+        </div>
+        <div class="slds-col abc">
+            
+        </div>
+        <div class="slds-col abc">
+            
+        </div>
+        <div class="slds-col abc">
+            <div style="width: 50%; height: 50%;  float:left;"> <lightning-input placeholder="Search Patient" onchange={searchnameorphoneChange}></lightning-input></div>
+            <div style="width: 50%; height: 50%; float:right;margin-top:20px;">&emsp;<lightning-button icon-name='utility:search' label="Search Patient" onclick={searchpatientClick}></lightning-button></div>
+        
+            <br>
+
+            <p style="margin-top: 50px;">{searchpatienterror}</p>
+        
+        </div>
+        </div>
+
+     
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col patient">
+         
+        </div>
+        <div class="slds-col patient">
+         
+            <lightning-button label="New Patient"></lightning-button>
+        </div>
+        <div class="slds-col patient">
+            <lightning-button label="Existing Patient"></lightning-button>
+        </div>
+        <div class="slds-col patient">
+            <lightning-button label="Out Patients" onclick={outpatients}></lightning-button>
+        </div>
+
+        <div class="slds-col patient">
+            <lightning-button label="In Patients"  onclick={inpatientsClick}></lightning-button>
+         
+            <br>
+            <br>  <br>  <br>
+        </div>
+         
+      </div>
+
+
+
+<!-- Out Patient Template -->
+
+<template if:true={outpatient}>
+
+   <h1>List of Out-Patients</h1>
+   <br>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={patientlist}
+                columns={outpcolumns}>
+        </lightning-datatable>
+    </div>    
+
+</template>
+
+
+
+
+<!-- In Patient Template -->
+
+<template if:true={inpatient}>
+<h1>List of In-Patients</h1>
+<br>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={inpatientlist}
+                columns={inpcolumns}>
+        </lightning-datatable>
+    </div>    
+
+</template>
+
+
+
+<!-- Search Patient -->
+
+<template if:true={searchPatienttemp}>
+<h1>Patient Information</h1>
+
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={searchPatientStatus}
+                columns={patientdata}>
+        </lightning-datatable>
+    </div>    
+
+    
+
+</template>
+    
+</div>
+</template>

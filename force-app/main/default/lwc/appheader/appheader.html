@@ -1,0 +1,82 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="Header">
+        <lightning-layout horizontal-align="space" vertical-align="center">
+            <lightning-layout-item padding="around-small" class="iconStyle" >
+                <img class="logoimg" 
+                    src="https://i.ibb.co/H2CPxDv/hmsCrop.png" >
+    
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-large" class="layoutstyle">
+                <input class="ab" type="button" style="border: none;outline:none;size:calc();background: transparent;font-size: large;" name="Home" value="Home" onclick={handleonclick}>  
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-large" class="layoutstyle">
+                <input class="ab" type="button" style="border: none;outline:none;size:calc();background: transparent;font-size: large;" name="Doctors" value="Doctors" onclick={handleonclick}>  
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-large" class="layoutstyle">
+                <input class="ab" type="button" style="border: none;outline:none;size:calc();background: transparent;font-size: large;" name="Services" value="Services" onclick={handleonclick}>  
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-large" class="layoutstyle">
+                <input class="ab" type="button" style="border: none;outline:none;size:calc();background: transparent;font-size: large;" name="Contact Us"  value="Contact Us" onclick={handleonclick}>  
+            </lightning-layout-item>
+           
+            <lightning-layout-item  padding="around-large" class="layoutstyle" >
+                <input class="ab" type="button" style="border: none;outline:none;size:calc();background: transparent;font-size: large;" name="Login" value="Login" onclick={handleonclick}>
+            </lightning-layout-item>
+          
+            <lightning-layout-item padding="around-large" class="layoutstyle">
+                <button class="button"   name="Book Appointment"  onclick={handleonclick}>Book Appointment</button>
+            </lightning-layout-item>
+    
+   
+    
+        </lightning-layout>
+       
+    </div>
+
+    <template if:true={isModalOpen}>
+   
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+              
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Book An Appointment</h2>
+                </header>
+               
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    
+                    <lightning-record-edit-form object-api-name="BookAppointment__c">
+                    
+                    <lightning-input-field field-name="Speciality__c"  onchange={specialityChange}> </lightning-input-field>
+            <lightning-input-field field-name="Doctor__c" onchange={doctorChange}> </lightning-input-field>
+            <lightning-input-field field-name="Name__c" onchange={nameChange}> </lightning-input-field>
+            <lightning-input-field field-name="Mobile_Number__c" onchange={mobileChange} > </lightning-input-field>
+            <lightning-input-field field-name="Email_Id__c" onchange={emailChange} > </lightning-input-field>
+            <lightning-input-field field-name="Appointment_Date__c" onchange={appointmemtDateChange}> </lightning-input-field>
+            <lightning-input-field field-name="Write_Reasons__c" onchange={reasonchange} > </lightning-input-field>
+    
+            <p>{errormsg}</p>
+           
+        </lightning-record-edit-form>
+        
+                </div>
+              
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submitDetails} title="BooK Now">BooK Now</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    
+    
+</template>

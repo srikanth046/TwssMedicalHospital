@@ -1,0 +1,257 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-wrap">
+    <div class="slds-col slds-size_4-of-12">
+        <img class="logoimg"  src="https://i.ytimg.com/vi/9xkM3i4weaw/hqdefault.jpg" >
+        </div>
+              <div class="slds-col slds-size_3-of-12">
+                <div class="slds-form-element__control" style="margin-top:10px;">
+                    <input type="text"  id="text-input-id" placeholder="Medicine Search" class="slds-input" onchange={medSearch}/>
+                </div>
+                  </div>
+                  <div class="slds-col slds-size_2-of-12" style="margin-top: 10px;">
+                    &emsp;<button class="slds-button slds-button_brand" onclick={serchClick}>Search</button>
+                      </div>
+              <div class="slds-col slds-size_1-of-12" style="margin-left: 220px;">
+                <lightning-avatar variant="circle" src="/assets/images/avatar2.jpg" initials={name} fallback-icon-name="standard:person_account" alternative-text={name} class="slds-m-right_small" style="width: 50px;height: 50px; margin-left: 20px;" onclick={openprofilemodel}></lightning-avatar>
+              </div>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_2-of-12" >
+                <div style="width: 220px;background-color: aqua;">
+                    <lightning-vertical-navigation onselect={handleonselect}>
+                        <lightning-vertical-navigation-item label="Home" name="Home"></lightning-vertical-navigation-item><br>
+                            <lightning-vertical-navigation-item label="Available medicine" name="Available medicine"></lightning-vertical-navigation-item><br>
+                            <lightning-vertical-navigation-item label="Medicine Shortage" name="Medicine Shortage"></lightning-vertical-navigation-item><br>
+                            <lightning-vertical-navigation-item label="Add Medicine" name="Add Medicine"></lightning-vertical-navigation-item><br>
+                            <lightning-vertical-navigation-item label="Medicine Bill" name="Medicine Bill"></lightning-vertical-navigation-item><br>
+                            <lightning-vertical-navigation-item label="Patient Prescription" name="Patient Prescription"></lightning-vertical-navigation-item>
+                        <br><br>
+                    </lightning-vertical-navigation>
+                </div>
+            </div>
+            <div class="slds-col slds-size_8-of-12" style="margin-top: 10px;width: 80%; " >
+    <template if:true={availableMedicineopen}>
+    <p style="font-size: x-large; color: blue;"><b>Available Medicines</b></p><br>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={availableMedicineopenlist}
+                show-row-number-column="true"
+                hide-checkbox-column="false" 
+                columns={columns}>
+        </lightning-datatable>
+    </div>    
+    </template>
+    <template if:true={medicineShortageopen}>
+        <p style="font-size: x-large; color: red;"><b>Medicine Shortages</b></p><br>
+        <div style="height: 300px;">
+            <lightning-datatable
+                    key-field="id"
+                    data={medicineShortageopenlist}
+                    columns={shortagecolumns}
+                    show-row-number-column="true"
+                    hide-checkbox-column="false"   
+                    onrowaction={callRowAction}>
+                    >
+            </lightning-datatable>
+        </div>    
+    </template>
+    <template if:true={addMedicineopen}>
+        <lightning-card>
+            <h3 slot="title">
+                <lightning-icon icon-name="standard:timesheet" alternative-text="Event" size="small"></lightning-icon>
+                &nbsp;ADD Medicines
+            </h3>
+            <template for:each={item1List} for:item="item1" for:index="index">
+                <lightning-record-edit-form key={item1.id} object-api-name="Medicine__c" >
+                    <lightning-messages></lightning-messages>
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item 
+                            padding="around-small">
+                            <lightning-input-field field-name="Name" variant="label-stacked" required>
+                            </lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item 
+                            padding="around-small">
+                            <lightning-input-field field-name="Medicines_Price__c" variant="label-stacked" required>
+                            </lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item 
+                            padding="around-small">
+                            <lightning-input-field field-name="Total_Quantity__c" variant="label-stacked" required>
+                            </lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item 
+                            padding="around-small">
+                            <div class="slds-p-top_medium">
+                                <lightning-icon icon-name="action:new" access-key={item1.id} id={index}
+                                    alternative-text="Add Row" size="small" title="Add Row" onclick={addRow}>
+                                </lightning-icon>
+                                <lightning-icon icon-name="action:delete" access-key={item1.id} id={index}
+                                    alternative-text="Delete Row" size="small" title="Delete Row" onclick={removeRow}>
+                                </lightning-icon>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                 <lightning-input-field class="slds-hide"  field-name="BookAppointment__c" value={updpres}></lightning-input-field>
+                 <lightning-input-field  class="slds-hide" field-name="Doctor__c" value={doctorid}></lightning-input-field>
+                </lightning-record-edit-form>
+            </template>
+            </br>
+            <lightning-layout>
+                <div class="slds-align_absolute-center">
+                    <lightning-button variant="success" onclick={handleSub} name="submit" label="Submit">
+                    </lightning-button>
+                </div>
+            </lightning-layout>
+        </lightning-card>
+    </template>
+    <template if:true={medicineBillopen}>
+        <p>Update medicine bill record</p>
+    </template>
+    <template if:true={patientprescription}>
+      <p style="font-size: x-large ; color: aquamarine;"><b>patient Search</b></p>
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_4-of-12">
+            <div class="slds-form-element__control" style="margin-top:20px;">
+                <input type="text"  id="text-input-id1" placeholder=" Enter Patient ID" class="slds-input" onchange={patientidchange}/></div><br>
+        </div>
+        <div class="slds-col slds-size_1-of-12">
+            <div class="slds-col slds-size_2-of-12" style="margin-left: 10px;">
+                &emsp;<button class="slds-button slds-button_brand" onclick={patientsearchClick}>Search</button>
+                  </div>
+        </div>
+      </div>
+    <template if:true={patientprescriptiondatatemp}>
+        <h1><b>Patiet Name:</b> {patientname}</h1><br>
+        <h1><b>Patient Id:</b> {patientid}</h1><br>
+        <h1><b>Refered By:</b> {doctorname}</h1>
+        <div class="slds-grid slds-wrap" style="margin-top: 20px;">
+            <div class="slds-col slds-size_3-of-12">
+                <p><b>Medicine Name</b></p>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <p><b>Medicine Quantity</b></p>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <p style="margin-left: 8px;"><b>Medicine Price</b></p>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <p style="margin-left: 15px;"><b>Total Price</b></p>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <p style="margin-left: 8px;"><b>Actions</b></p>
+            </div>
+      </div>
+      
+      <template for:each={patientprescriptiondata} for:item="pp">
+          <div key={pp.Id}>
+            <div class="slds-grid slds-wrap" style="margin-top: 20px;">
+                <div class="slds-col slds-size_3-of-12">
+                    <p>{pp.medicine_name__c}</p>
+                </div>
+                <div class="slds-col slds-size_2-of-12">
+                    <p style="margin-left: 50px;">{pp.Quantity__c}</p>
+                </div>
+                <div class="slds-col slds-size_2-of-12">
+                    <p style="margin-left: 50px;">{pp.medicine_Price__c}</p>
+                </div>
+                <div class="slds-col slds-size_2-of-12">
+                    <p style="margin-left: 50px;">{pp.Medicine_with_Quantity_price__c}</p>
+                </div>
+                <div class="slds-col slds-size_2-of-12">
+                    <lightning-icon icon-name="utility:edit"  onclick={patientprescriptionclick} name={pp.Id}></lightning-icon>
+                   <lightning-icon icon-name="utility:delete" style="margin-left: 10px;" onclick={patientprescriptiondelete}></lightning-icon>
+                </div>
+                </div>
+        
+          </div>
+      </template>
+    </template>
+    </template>
+            </div>
+        </div>
+    </lightning-card>
+    <template if:true={updatemedicineshortageOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeupdatemedicineModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">UPDATE MEDICINE</h2>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="acc-container">
+                        <lightning-record-edit-form record-id={recId} object-api-name="Medicine__c" onsuccess={handleSuccess}>
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-output-field field-name="Name"></lightning-output-field>
+                                    <lightning-output-field field-name="Medicine__c"></lightning-output-field>
+                                    <lightning-input-field field-name="Total_Quantity__c"></lightning-input-field>
+                                    <lightning-button variant="brand" type="submit" label="Save">
+                                    </lightning-button>
+                                </div>    
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeupdatemedicineModal} title="Cancel">Cancel</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={Patientprescriptiontemp}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={patientprecscriptionedit}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Upadte Prescription</h2>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                    <div class="acc-container">
+                        <lightning-record-edit-form record-id={recordid} object-api-name="Prescription__c" onsuccess={handleSuccess}>
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-output-field field-name="medicine_name__c"></lightning-output-field>
+                                    <lightning-input-field field-name="Quantity__c"></lightning-input-field>
+                                    <lightning-output-field field-name="medicine_Price__c"></lightning-output-field>
+                                    <lightning-button variant="brand" type="submit" label="update">
+                                    </lightning-button>
+                                </div>    
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={patientprecscriptionedit} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    </template>

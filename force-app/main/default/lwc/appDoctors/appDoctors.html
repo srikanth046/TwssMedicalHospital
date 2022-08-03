@@ -1,0 +1,211 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <!-- <lightning-card > -->
+      <div class="backgroundcolorstyle">
+        <div class="ourdoctors">
+            <br>
+            
+          <span> Our Doctors</span> 
+            <br>
+            <br>
+        </div>
+
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+         <div class="imgstyles">
+          <img class="styimg" src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/Dr%20P%20Ramesh%20Babu.jpg" onclick={imgclick}  name="Dr. P Ramesh Babu">
+        </div>
+          <h1>Dr. P Ramesh Babu</h1>
+          <h2>MBBS, MD, DM</h2>
+        </div>
+        <div class="slds-col">
+          <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/Dr%20PVSS%20%20Srinivas%20Prasad.jpg" onclick={imgclick} name="Dr. PVSS Srinivasa Prasad">
+          <h1>Dr. PVSS Srinivasa Prasad</h1>
+          <h2>MBBS, MD, DM,FESC, FSCAI</h2>
+        </div>
+        <div class="slds-col">
+         <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrPSrinivasaRao.jpg" onclick={imgclick} name="Dr. P Srinivasa Rao">
+         <h1>Dr. P Srinivasa Rao</h1>
+         <h2>MBBS, MD</h2>
+        </div>
+        <div class="slds-col">
+         <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrYSowjanya.jpg" onclick={imgclick} name="Dr. Y Sowjanya">
+         <h1>Dr. Y Sowjanya</h1>
+         <h2>MBBS, DA, Diploma in Accident Emergency Medicine</h2>
+        </div>
+      </div>
+
+
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+          <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/Dr%20G%20Krishna%20Mohan.jpg" onclick={imgclick} name="Dr. G Krishna Mohan">
+          <h1>Dr. G Krishna Mohan</h1>
+          <h2>MBBS, MD, DM</h2>
+        </div>
+        <div class="slds-col">
+          <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrGRamaMohanRao.jpg" onclick={imgclick} name="Dr. G Rama Mohan Rao">
+          <h1>Dr. G Rama Mohan Rao</h1>
+          <h2>MBBS, MS</h2>
+        </div>
+        <div class="slds-col">  
+         <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrChPadmaja.jpg" onclick={imgclick} name="Dr. Ch Padmaja">
+         <h1>Dr. Ch Padmaja</h1>
+         <h2>MBBS, DNB</h2>
+        </div>
+        <div class="slds-col">
+         <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrYRamesh.jpg" onclick={imgclick} name="Dr. RAMESH Y">
+         <h1>Dr. RAMESH Y</h1>
+         <h2>MBBS, MD , DM</h2>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+          <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/Dr%20Shivaprasad%20B%20Mukkannavar.jpg" onclick={imgclick} name="Dr Shivaprasad B Mukkannavar">
+          <h1>Dr Shivaprasad B Mukkannavar</h1>
+          <h2>MBBS, MS, Mch</h2>
+        </div>
+        <div class="slds-col">
+          <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrKHimaBindu.jpg" onclick={imgclick} name="Dr. K Hima Bindu">
+          <h1>Dr. K Hima Bindu</h1>
+          <h2>MBBS, MD</h2>
+        </div>
+        <div class="slds-col">
+         <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrRakeshBobba.jpg" onclick={imgclick} name="Dr. Rakesh Bobba">
+         <h1>Dr. Rakesh Bobba</h1>
+         <h2>MBBS, MD, DM</h2>
+        </div>
+        <div class="slds-col">
+         <img src="https://www.rameshhospitals.com/assets/images/team/Vijayawada/DrPChayaDevi.jpg" onclick={imgclick} name="Dr. P Chaya Devi">
+         <h1>Dr. P Chaya Devi</h1>
+         <h2>MBBS, MD</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- </lightning-card> -->
+
+
+
+ <!-- open Doctor Template -->
+
+
+ <template if:true={isModalOpen}>
+  
+  <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+         
+          <header class="slds-modal__header">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                  <lightning-icon icon-name="utility:close"
+                      alternative-text="close"
+                      variant="inverse"
+                      size="small" ></lightning-icon>
+                  <span class="slds-assistive-text">Close</span>
+              </button>
+              <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Doctor Details</h2>
+          </header>
+         
+          <div class="slds-modal__content slds-p-around_medium slds-te" >
+            <h1 style="text-align: left;font-size:large">About {doctorname}</h1> 
+<br>
+<!-- <p style="margin-left: 20px;  color: #808080;">{doctordescription}</p>
+<br>
+<h1 style="text-align: left;">Specialities</h1> 
+<br>
+<button class="slds-button"  value={specialist}>{specialist}</button> -->
+
+
+<div class="slds-grid slds-gutters">
+ 
+  <div class="slds-col slds-size_1-of-3">
+  <img class="imgs" style="height: 88%;" src={doctorphoto}>
+  </div>
+  <div class="slds-col slds-size_2-of-3">
+  
+    <span style="color: #808080;">{doctordescription}</span>
+  </div>
+</div>
+
+<lightning-button label="Check Today Availablity" onclick={checktodayAvailbility} ></lightning-button>
+
+<br>
+
+<template if:true={checkAvailbilityStatus}>
+<p>{checkAvailbilitytodayStatus}</p>
+</template>
+<br>
+<h1 style="text-align: left;">Specialities</h1> 
+<button class="slds-button"  value={specialist}>{specialist}</button>
+          </div>
+       
+          <footer class="slds-modal__footer">
+              <button class="slds-align_absolute-center" onclick={booknow} title="Book Now">Book Now</button>
+              
+          </footer>
+      </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+
+<!-- Book now Template -->
+
+<template if:true={booknowtemp}>
+  
+  <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+         
+          <header class="slds-modal__header">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closebooktempModal}>
+                  <lightning-icon icon-name="utility:close"
+                      alternative-text="close"
+                      variant="inverse"
+                      size="small" ></lightning-icon>
+                  <span class="slds-assistive-text">Close</span>
+              </button>
+              <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Book An Appoinment</h2>
+          </header>
+         
+          <div class="slds-modal__content slds-p-around_medium slds-te" >
+            <h1 style="text-align: left;font-size:large"> </h1> 
+<br>
+
+
+          
+
+<lightning-record-edit-form object-api-name="BookAppointment__c">
+  <lightning-input-field field-name="Doctor__c" value={doctorname} disabled="true"></lightning-input-field>
+  <lightning-input-field field-name="Speciality__c" value={specialist} disabled="true"></lightning-input-field>
+  <lightning-input-field field-name="Name__c" onchange={nameChange}></lightning-input-field>
+  <lightning-input-field field-name="Mobile_Number__c" onchange={mobilenumberChange}></lightning-input-field>
+  <lightning-input-field field-name="Email_Id__c" onchange={emailIdChange}></lightning-input-field>
+  <lightning-input-field field-name="Appointment_Date__c" onchange={appointmentdateChange}></lightning-input-field>
+  <lightning-input-field field-name="Write_Reasons__c" onchange={reasonChange}></lightning-input-field>
+
+<p style="color: red;"> {errormsg} </p>
+</lightning-record-edit-form>
+
+          </div>
+       
+          <footer class="slds-modal__footer">
+              <button class="slds-align_absolute-center"  title="Book Now" onclick={bookanappointment}>Book Now</button>
+              
+          </footer>
+      </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+<template if:true={errormsgetemp}>
+<p>{errormsg}</p>
+</template>
+
+
+
+</template> 

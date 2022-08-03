@@ -1,0 +1,593 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+
+    <lightning-card>
+        <div class="slds-grid slds-wrap">
+
+            <div class="slds-col slds-size_4-of-12">
+                <img class="logoimg"  src="https://i.ibb.co/H2CPxDv/hmsCrop.png" >
+              </div>
+              <div class="slds-col slds-size_3-of-12">
+                <div class="slds-form-element__control" style="margin-top: 10px;">
+                    <input type="text" id="text-input-id-47" placeholder="Search Patient Name/Mobile" class="slds-input" onchange={nameorphonechange}/>
+                  </div>
+                  </div>
+                  <div class="slds-col slds-size_2-of-12" style="margin-top: 10px;">
+                    &emsp;<button class="slds-button slds-button_brand" onclick={serchClick}>Search</button>
+                      </div>
+                  
+              <div class="slds-col slds-size_1-of-12" style="margin-left:200px; margin-bottom:auto;">
+                <lightning-avatar variant="circle" src={doctorimg} initials={name} fallback-icon-name="standard:person_account" alternative-text={name} class="slds-m-right_small" style="width: 50px;height: 50px; margin-left: 20px;" onclick={openprofilemodel}></lightning-avatar>
+              </div>
+        </div>
+
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_2-of-3">
+                <div class="slds-grid slds-wrap">
+
+
+                    <div class="slds-col slds-size_1-of-4">
+                        <img src={doctorimg} style="height: 60%; margin-left: 80px;">
+                      </div>
+                      <div class="slds-col slds-size_3-of-4">
+                        <h2 style="margin-left: 120px;font-size: larger;"> <b>ID:</b> {doctorid}</h2>
+                        <br><br>
+                        <h2 style="margin-left: 120px;font-size: larger;"> <b>Name:</b> {name}</h2><br><br>
+                        <h2 style="margin-left: 120px;font-size: larger;"> <b>Specialist:</b> {doctorspecilist}</h2><br><br>
+                        <h2 style="margin-left: 120px;font-size: larger;"> <b>Mobile:</b> {doctormobile}</h2><br><br>
+                        <h2 style="margin-left: 120px;font-size: larger;"> <b>Gender:</b> {doctorgender}</h2>
+                      </div>
+                </div>
+
+
+                
+                
+            </div>
+            <div class="slds-col slds-size_1-of-3 ">
+                <template if:true={openprofile}>
+                    <h3 class="slds-section-title--divider" style="margin-left: 230px;">Doctor profile</h3>
+                    <div class="slds-form--stacked slds-p-around_medium">
+                        <lightning-menu-item vlaue="ChangePassword" label="Change Password" onclick={changepasswordtemp} style="margin-left: 230px;"></lightning-menu-item>
+                        <lightning-menu-item value="Request Leave" label="Request Leave" onclick={openleavetemp} style="margin-left: 230px"></lightning-menu-item>
+                        <lightning-menu-item value="Logout" label="Logout" onclick={logout} style="margin-left: 230px;"></lightning-menu-item>
+                    </div>
+                </template>
+                <!-- <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="text-input-id-1">Verify Patient</label>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <lightning-icon size="x-small" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" icon-name="utility:search" ></lightning-icon>
+                        <input type="text" id="text-input-id-1" placeholder="Please Enter Name / Phone Number" onchange={nameorphonechange} class="slds-input" />
+                    </div>
+                </div>
+                <br>
+                <lightning-button label="Submit" onclick={serchClick}></lightning-button> -->
+                </div>
+          </div>
+
+    
+    
+        <div class="slds-grid">
+            <div class="slds-col">
+                <div style="height: 80px;">
+                    <br>
+                    <h1>Appointments</h1>
+                    
+                    </div>
+            </div>
+            <!-- <div class="slds-col">
+
+            </div>
+            <div class="slds-col">
+              
+                <! <lightning-button label=" Today Appointments" onclick={todaypatients}></lightning-button> -->
+            <!-- </div>
+            <div class="slds-col">
+
+            </div>
+            <div class="slds-col">
+
+            </div>
+            <div class="slds-col">
+
+            </div>
+            <div class="slds-col">
+
+            </div>
+            <div class="slds-col"> -->
+
+            <!-- </div>
+            <div class="slds-col">
+
+            </div>
+            <div class="slds-col">
+
+            </div>
+            <div class="slds-col">
+                <lightning-button label="Logout" onclick={logout}></lightning-button>
+            </div>
+            <div class="slds-col">
+
+            </div> -->
+        </div> 
+        <template if:true={openDatatable}>
+            <div>
+ <lightning-layout>
+    <lightning-layout-item padding="around-large">
+        <span class="slds-size_full"><b>Total Patients : {datasize}</b></span>
+    </lightning-layout-item>
+     <lightning-layout-item padding="around-small" alignment-bump="left">
+        <lightning-combobox
+    name="progress"
+    label="Size"
+    value={PageSize}
+    options={optionsReSize}
+    onchange={handleSize} ></lightning-combobox>
+    </lightning-layout-item>
+</lightning-layout>
+</div>
+<br>
+      <template for:each={visibleobject} for:item="vs">
+          <div key={vs.Id} class="slds-box slds-m-around_medium">
+              <lightning-card title={vs.Name__c} icon-name="action:user">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_4-of-12" style="margin-top: 20px;">
+                   <p style="font-size: large;"><b>ID:  </b>{vs.Id}</p><br>
+                   <p style="font-size: large;"><b>Email:  </b>{vs.Email_Id__c}</p><br>
+                   <p style="font-size: large;"><b>Problem:  </b>{vs.Write_Reasons__c}</p>
+                  </div>
+                  <div class="slds-col slds-size_2-of-12" style="margin-left: 10px;margin-top: 20px;">
+                    <p style="font-size: large;"><b>Status:  </b>{vs.Patient_Status__c}</p><br>
+                    <p style="font-size: large;"><b>Phone:  </b>{vs.Mobile_Number__c}</p>
+                  </div>
+                  <div class="slds-col slds-size_4-of-12">
+                    
+                  </div>
+                  <div class="slds-col slds-size_1-of-12">
+                    <button class="slds-button slds-button_brand"  name={vs.Id} style="margin-top: 5px;margin-left: 4px;" onclick={ViewClick}>View</button> 
+                    <button class="slds-button slds-button_text-destructive"  name={vs.Id} style="margin-top: 5px;" onclick={EditClick}>Edit</button>
+                    <button class="slds-button slds-button_destructive" name={vs.Id} style="margin-top: 5px;">Lab</button>
+                    <button class="slds-button slds-button_success"  name={vs.Id} style="margin-top: 5px;" onclick={pressClick}>Pharmacy</button>
+                  </div>
+            </div>
+        </lightning-card>
+
+          </div>
+      </template>
+
+
+
+
+
+
+
+
+            
+
+        </template>
+           
+<div>
+        <c-paginationnavigation records={patientinfo} record-size={PageSize} onupdate={updateAccountHandler}></c-paginationnavigation>
+</div>
+        <div class="norecordsfound">
+
+            <template if:true={norecordsfoundtemp}>
+                <p>{errormsg}</p>
+            </template>
+
+        </div>
+
+
+        <template if:true={openmedicineform}>
+           
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                  
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Patient Medical Report</h2>
+                    </header>
+                   
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-record-edit-form object-api-name="Pharmacy__c">
+                            <lightning-input-field field-name="Date__c" onchange={dateChange}></lightning-input-field>
+                            <lightning-input-field field-name="Patient_Name__c" value={patientName}
+                                onclick={patientnameChange} disabled="true"></lightning-input-field>
+                            <lightning-input-field field-name="Doctor_Name__c" value={doctorName}
+                                onclick={doctornameChange} disabled="true"></lightning-input-field>
+                            <lightning-input-field field-name="Medicine_List__c" onclick={medicinelistChange}>
+                            </lightning-input-field>
+
+                        </lightning-record-edit-form>
+                    </div>
+                 
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}
+                            title="Cancel">Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">Submit</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <template if:true={openBill}>
+           
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                  
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate">Patient Bill</h2>
+                    </header>
+                   
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                        <div style="height: 200px;">
+                            <br>
+                            <br>
+                            <lightning-datatable key-field="id" data={medicinebillStatus} columns={medilcalbillcol} hide-checkbox-column="true"
+                                show-row-number-column="true" onrowaction={handleRowAction}>
+                            </lightning-datatable>
+                            <br>
+                            <lightning-button  label="Download" onclick={downloadbill} ></lightning-button>
+                        </div>
+                    </div>
+                 
+                   
+
+
+
+                    <footer class="slds-modal__footer">
+                       
+                        <p>Thank You</p>
+                      
+                    </footer>
+                </div>
+
+
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    
+
+
+
+
+
+
+    <template if:true={openUpdateDetails}>
+           
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+              
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeupdatedetailsModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-04" class="slds-text-heading_medium slds-hyphenate">Patient Medical Report</h2>
+                </header>
+               
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+                    <lightning-record-edit-form object-api-name="BookAppointment__c">
+                       
+                        <lightning-input-field field-name="Name" value={appoinmentId} disabled="true"></lightning-input-field>
+                        <lightning-input-field field-name="Name__c" value={patientName} disabled="true"></lightning-input-field>
+                        <lightning-input-field field-name="Appointment_Date__c" value={appoinmentDate} disabled="true"></lightning-input-field>
+                        <lightning-input-field field-name="Write_Reasons__c" value={appoinmentReson} disabled="true"></lightning-input-field>
+                        <lightning-input-field field-name="Doctor__c" value={doctorName} ></lightning-input-field>
+                        <lightning-input-field field-name="Patient_Status__c" value={appoinmentStatus} onchange={patientChange}></lightning-input-field>
+                        <lightning-input-field field-name="PatientAvailability__c" value={patientAvailability} disabled="true"></lightning-input-field>
+
+                    </lightning-record-edit-form>
+                </div>
+             
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeupdatedetailsModal}
+                        title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={updateDetails} title="OK">Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+
+<template if:true={openSearchPatientdata}>
+
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={searchPatientStatus}
+                columns={patientdata}>
+        </lightning-datatable>
+    </div>    
+
+    
+</template>
+
+
+<template if:true={patientnotavailible}>
+    <p>Patient Not Availible</p>
+</template>
+
+<template if:true={leavetempOpen}>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeleavetemp}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">LEAVE FORM</h2>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                <p><b> Total Leaves :</b>10</p>
+                <p><b>Leaves Taken :</b>{doctorlevtaken}</p>
+                <p><b>Remaining Leaves :</b>{doctorremainlevs}</p>
+
+                <lightning-record-edit-form object-api-name="Leave__c">
+                 <!-- <lightning-input-field field-name="Doctor_Name__c" value={name} disabled="true"></lightning-input-field> -->
+                 <lightning-input-field field-name="From_Date__c" onchange={fromdatechange}></lightning-input-field>
+                 <lightning-input-field field-name="To_Date__c" onchange={todatechage}></lightning-input-field>
+                 <lightning-input-field field-name="Reason__c" onchange={reasonchange}></lightning-input-field>
+                </lightning-record-edit-form>
+            
+            <template if:true={leaveerrortemp}>
+                <h2 style="color: red;">{triggererrormsg}</h2>
+            </template>
+        </div>
+            <!-- Modal/Popup Box LWC footer starts here -->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={closeleavetemp} title="Cancel">Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={submitDetails} title="Apply">Apply</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+
+<template if:true={changepwdtemp}>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={openchangeclosepwd}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-05" class="slds-text-heading_medium slds-hyphenate">Update Password</h2>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-5">
+                <lightning-input label="Old Password" type="password" onchange={oldpwdchange}></lightning-input>
+                <lightning-input label="New Password"  type="password" onchange={newpwdchange}></lightning-input>
+                <lightning-input label="Confirm Password"  type="password" onchange={confirmpwdchange}></lightning-input>
+                <template if:true={changeerrormegtemp}>
+                   {changeerror} 
+                </template>            
+            </div>
+            <!-- Modal/Popup Box LWC footer starts here -->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={openchangeclosepwd} title="Cancel">Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={updatepwdclick} title="Submit">Submit</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+</lightning-card>
+
+<template if:true={viewpatientdetailstemp}>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModalview}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-06" class="slds-text-heading_medium slds-hyphenate">VIEW PATIENT DETAILS</h2>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-6">
+                <lightning-record-view-form record-id={viewid} object-api-name="BookAppointment__c">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-2" style="margin-left: 50px;">
+                            <lightning-output-field field-name="Name"></lightning-output-field>
+                            <lightning-output-field field-name="Name__c"></lightning-output-field>
+                            <lightning-output-field field-name="Appointment_Date__c"></lightning-output-field>
+                            <lightning-output-field field-name="Doctor__c"></lightning-output-field>
+                            <lightning-output-field field-name="PatientAvailability__c"></lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name="Mobile_Number__c"></lightning-output-field>
+                            <lightning-output-field field-name="Email_Id__c"></lightning-output-field>
+                            <lightning-output-field field-name="Speciality__c"></lightning-output-field>
+                            <lightning-output-field field-name="Write_Reasons__c"></lightning-output-field>
+                            <lightning-output-field field-name="Patient_Status__c"></lightning-output-field>
+                        </div>
+                    </div>
+                </lightning-record-view-form>
+            </div>
+            <!-- Modal/Popup Box LWC footer starts here -->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={closeModalview} title="Cancel">Cancel</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+<template if:true={updatepatientdetailstemp}>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModaledit}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-07" class="slds-text-heading_medium slds-hyphenate">UPDATE PATIENT DETAILS</h2>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-7">
+                <lightning-record-edit-form record-id={patientid} object-api-name="BookAppointment__c"
+            onsuccess={handleSuccess} onsubmit ={handleSubmit}>
+        <lightning-messages>
+        </lightning-messages>
+        <lightning-output-field field-name="Name" disabled="true">
+        </lightning-output-field>
+        <lightning-input-field field-name="Name__c" disabled="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="Mobile_Number__c" disabled="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="Email_Id__c" disabled="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="Patient_Status__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Write_Reasons__c" disabled="true">
+        </lightning-input-field>
+        <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update">
+        </lightning-button>
+    </lightning-record-edit-form>
+            </div>
+            <!-- Modal/Popup Box LWC footer starts here -->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={closeModaledit} title="Cancel">Cancel</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+
+
+<template if:true={presstemp}>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={pressform}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-08" class="slds-text-heading_medium slds-hyphenate">MEDICINE FORM</h2>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-8">
+                <lightning-card>
+                    <h3 slot="title">
+                        <lightning-icon icon-name="standard:timesheet" alternative-text="Event" size="small"></lightning-icon>
+                        &nbsp;Patient Medicine Form
+                    </h3>
+                    <template for:each={item1List} for:item="item1" for:index="index">
+                        <lightning-record-edit-form key={item1.id} object-api-name="Prescription__c" >
+                            <lightning-messages> </lightning-messages>
+                            <lightning-layout multiple-rows>
+                                <lightning-layout-item 
+                                    padding="around-small">
+                                    <lightning-input-field field-name="Medicine__c" variant="label-stacked" required>
+                                    </lightning-input-field>
+                                </lightning-layout-item>
+                                <lightning-layout-item 
+                                    padding="around-small">
+                                    <lightning-input-field field-name="Quantity__c" variant="label-stacked" required>
+                                    </lightning-input-field>
+                                </lightning-layout-item>
+                                <lightning-layout-item 
+                                    padding="around-small">
+                                    <div class="slds-p-top_medium">
+                                        <lightning-icon icon-name="action:new" access-key={item1.id} id={index}
+                                            alternative-text="Add Row" size="small" title="Add Row" onclick={addRow}>
+                                        </lightning-icon>
+                                        <lightning-icon icon-name="action:delete" access-key={item1.id} id={index}
+                                            alternative-text="Delete Row" size="small" title="Delete Row" onclick={removeRow}>
+                                        </lightning-icon>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                            <lightning-input-field class="slds-hide"  field-name="BookAppointment__c" value={updpres}></lightning-input-field>
+                            <lightning-input-field  class="slds-hide" field-name="Doctor__c" value={doctorid}></lightning-input-field>
+                        </lightning-record-edit-form>
+                    </template>
+                    </br>
+                    <lightning-layout>
+                        <div class="slds-align_absolute-center">
+                            <lightning-button variant="success" onclick={handleSub} name="submit" label="Submit">
+                            </lightning-button>
+                        </div>
+                    </lightning-layout>
+                </lightning-card>
+            </div>
+            <!-- Modal/Popup Box LWC footer starts here -->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={pressform} title="Cancel">Cancel</button>
+                
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+
+
+</template>

@@ -1,0 +1,88 @@
+<template>
+
+    <template if:true={verifyEmailtemp}>
+        <img style="width:103%;"
+            src="https://images.squarespace-cdn.com/content/v1/58989c1b5016e1eeef68cfbe/1553097656870-W2IG6A20FKAAS29BLDSV/email-writing.png?format=1000w">
+        <div class="top-right">
+            <p style="color: #fff; font-size: large;">Email</p>
+            <lightning-input placeholder="Please Ente the Email" type="email" onchange={emailChange}>
+            </lightning-input>
+            <p style="color: red; font-weight: bold;font-size: larger;">{errormsg}</p>
+            <br>
+            <lightning-button label="Submit" onclick={submitClick}></lightning-button>
+        </div>
+    </template>
+
+
+
+    <template if:true={verifyOtp}>
+        <img src="https://www.teahub.io/photos/full/176-1763311_data-security-wallpaper-hd.jpg" alt="">
+
+        <div class="top-right">
+            <p style="color: #fff; font-size: large;">OTP</p>
+            <lightning-input maxlength="50" placeholder="Please Enter the Otp" onchange={otpchange}></lightning-input>
+            <p style="color: red; font-weight: bold;font-size: larger;">{otperrormsg}</p><br>
+            <br>
+            <lightning-button label="Submit" onclick={verifyotp}></lightning-button>
+        </div>
+    </template>
+
+    <template if:true={openBookAppointment}>
+
+
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-3">
+
+                <br>
+                <div class="card">
+
+                    <div class="container">
+                        <br>
+
+                        <h1 style="text-align: center;font-size: xx-large; font-weight: bolder;color:#fff">Book An
+                            Appointment</h1>
+                        <lightning-record-edit-form object-api-name="BookAppointment__c">
+
+                            <lightning-input-field field-name="Speciality__c" onchange={specialityChange}>
+                            </lightning-input-field>
+                            <lightning-input-field field-name="Doctor__c" onchange={doctorChange}>
+                            </lightning-input-field>
+                            <lightning-input-field field-name="Appointment_Date__c" onchange={appointmentdatechange}>
+                            </lightning-input-field>
+                            <lightning-input-field field-name="Write_Reasons__c" onchange={writeReasonChange}>
+                            </lightning-input-field>
+
+                            &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;<lightning-button
+                                style="text-align: center;" label="Book Now" onclick={bookNowClick}></lightning-button>
+                            <br>
+                            <br>
+
+                        </lightning-record-edit-form>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="slds-col slds-size_2-of-3">
+                <img src="https://thoughtwavesoftwaresolutio3-dev-ed--c.visualforce.com/resource/1644828227000/myimg">
+
+                <!-- <img src="https://media.istockphoto.com/photos/businesswoman-filling-online-survey-on-mobile-phone-picture-id1322047872?b=1&k=20&m=1322047872&s=170667a&w=0&h=RcbUy3eAYJw6JFA11TRXHuyL7VC_uYsiSdgknn_HGh8="> -->
+
+            </div>
+        </div>
+
+
+
+
+    </template>
+
+
+
+
+
+
+</template>

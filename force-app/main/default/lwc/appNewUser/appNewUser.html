@@ -1,0 +1,39 @@
+<template>
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+            
+                <!-- <img  src="https://wallpaperaccess.com/full/136935.jpg"> -->
+                <img src="https://newtackserviceplatform.com/public/front/images/Appointment.jpg">
+            
+        </div>
+        <div class="slds-col slds-size_1-of-3 ">
+            <div >
+                <div class="slds-modal__content slds-p-around_medium " id="modal-content-id-1" style="margin-top: 150px;">
+                    <h1 style="text-align: center;font-size: xx-large; font-weight: bolder;color:rgb(19, 16, 16);">Book An
+                        Appointment</h1>
+                    <lightning-record-edit-form object-api-name="BookAppointment__c">
+                    
+                    <lightning-input-field field-name="Speciality__c"  onchange={specialityChange}> </lightning-input-field>
+            <lightning-input-field field-name="Doctor__c" onchange={doctorChange}> </lightning-input-field>
+            <lightning-input-field field-name="Name__c" onchange={nameChange}> </lightning-input-field>
+            <lightning-input-field field-name="Mobile_Number__c" onchange={mobileChange} > </lightning-input-field>
+            <lightning-input-field field-name="Email_Id__c" onchange={emailChange} > </lightning-input-field>
+            <lightning-input-field field-name="Appointment_Date__c" onchange={appointmemtDateChange}> </lightning-input-field>
+            <lightning-input-field field-name="Write_Reasons__c" onchange={reasonchange} > </lightning-input-field>
+            
+            
+            <p style="color: red;">{errormsg}</p>
+            
+            
+            </lightning-record-edit-form>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <lightning-badge label="Book Now" onclick={submitClick} ></lightning-badge>
+            <!-- <lightning-button  label="Book Now"  ></lightning-button> -->
+            
+                </div>
+            </div>
+        </div>
+      </div>
+
+</template>

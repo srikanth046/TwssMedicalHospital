@@ -1,0 +1,56 @@
+<template>
+    
+<lightning-card>
+<h1>Doctor Registration</h1>
+<br>
+
+
+<div class="slds-grid slds-wrap">
+
+    <div class="slds-col slds-size_6-of-12">
+        <div class="registerimg">
+        <img src="https://thumbs.dreamstime.com/b/doctor-writing-prescription-22775215.jpg">
+    </div>
+    </div>
+      <div class="slds-col slds-size_6-of-12">
+        
+        <div class="registerform">
+            <lightning-record-edit-form object-api-name="Doctor__c">
+                <lightning-input label="Name" onchange={nameChange}></lightning-input>
+                <lightning-input label="Mobile" onchange={mobileChange}></lightning-input>
+                <!-- <lightning-input-field field-name="Specialist__c"></lightning-input-field> -->
+            
+           
+            
+            <lightning-radio-group 
+            label="Gender"
+            options={options}
+            value={value}
+            type="radio" onchange={genderChange}></lightning-radio-group>
+        
+            <lightning-input label="UserName" onchange={usernameChange}></lightning-input>
+            <lightning-input label="Password" type="password" onchange={passwordChange}></lightning-input>
+            <br>
+            <div>
+            <p>{registererrormsg}</p>
+            <br>
+        </div>
+            <lightning-button label="register" onclick={registerClick}></lightning-button>
+        </lightning-record-edit-form>
+        </div>
+        
+
+      </div>
+
+
+</div>
+
+
+
+
+
+
+</lightning-card>
+
+
+</template>

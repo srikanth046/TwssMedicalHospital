@@ -1,0 +1,38 @@
+img {
+    width: 92%;
+    height: 100%;
+  
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgb(89, 89, 90);
+    transition: 0.3s;
+    margin-top: 150px;
+   background-color: #fff;
+    
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,2);
+  }
+  
+  .container {
+    padding: 2px 16px;
+  }
+  .slds-gutters{
+      background-color: #660033;
+      margin-left: 3px;
+      margin-right: 3px;
+  }
+  h1{
+
+text-align: center;
+    color:#663300 ;
+    font-weight: bolder;
+    font-size: xx-large;
+  }
+
+  p{
+      color: red;
+      font-size: x-large;
+  }

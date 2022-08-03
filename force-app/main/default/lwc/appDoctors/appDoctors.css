@@ -1,0 +1,65 @@
+img{
+    max-width: 95%;
+}
+img :hover {
+ border: 10px solid red;
+    
+}
+h1{
+ font-weight: bold; 
+ font-size:x-large;
+ text-align: center;
+}
+h2 {
+    text-align: center;
+}
+
+.ourdoctors{
+    background-color: cadetblue;
+    text-align: center;
+    font-family: 'Lucida Calligraphy';
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-bottom: 15px;
+    color: rgb(2, 1, 8);
+}
+
+
+
+
+
+span{
+    text-align: center;
+   
+}
+
+
+.imgstyles:hover{
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+   max-width: 100%;
+   border: 10px black;
+  
+
+}
+
+.slds-gutters{
+    margin-left: 4px;
+}
+
+.slds-col img:hover{
+
+    border: solid 3px #CCC;
+        -moz-box-shadow: 1px 1px 5px #999;
+        -webkit-box-shadow: 1px 1px 5px #999;
+            box-shadow: 20px 20px 40px #999;
+    }
+
+    .backgroundcolorstyle{
+background-color: rgb(213, 241, 241);
+
+    }
+
+    

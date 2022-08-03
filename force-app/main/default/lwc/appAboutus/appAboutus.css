@@ -1,0 +1,63 @@
+.slds-col{
+    padding: 50px;
+   
+    width: 20%;
+    border-radius: 30px;
+}
+
+
+
+.cardstyle{
+    border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 350px;
+  height: 250px;
+  background-color: blanchedalmond;
+
+}
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  /* max-width: 40%; */
+}
+
+.cardstyle:hover{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+ color: blanchedalmond;
+  
+}
+
+h1{
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ourservices{
+  background-color:#ddccff;
+  text-align: center;
+  font-family: 'Cooper Black';
+  font-size: xx-large;
+  font-weight: bolder;
+  margin-bottom: 15px;
+  color: rgb(14, 0, 0);
+  height: 80px;
+}
+
+.doc{
+  position: relative;
+  top: 18px;
+  
+}
+
+.bgs{
+
+  background-color: #e6fff2;
+}

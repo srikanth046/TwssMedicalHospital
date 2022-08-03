@@ -1,0 +1,20 @@
+h1{
+    font-size: xx-large;
+    margin-left: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.registerform{
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.registerimg{
+    margin-left: 50px;
+}
+
+p{
+    color: red;
+    
+}

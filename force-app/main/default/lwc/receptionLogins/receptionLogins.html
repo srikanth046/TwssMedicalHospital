@@ -1,0 +1,36 @@
+<template>
+    
+    <div class="slds-grid slds-gutters">
+
+        <div class="slds-col slds-size_1-of-3">
+
+
+            <div class="card">
+ 
+                <div class="container">
+                    <br>
+                    <h1>Reception Login</h1>
+                    <br>
+                    <lightning-input label="User Name" type="email" onchange={emailChange}></lightning-input>
+              
+                    <lightning-input label="Password" type="password" onchange={passwordChange}></lightning-input>
+                <br>
+                   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <lightning-button style="text-align: center;" label="Login" onclick={loginClick}></lightning-button>
+        
+                    <p>{loginerror}</p>
+                    <br>  <br>   <br>
+                </div>
+              </div>
+
+          
+
+        </div>
+        <div class="slds-col slds-size_2-of-3">
+          <img src="https://media.gettyimages.com/photos/beautiful-latin-american-patient-filling-in-a-form-at-the-hospitals-picture-id1141330750?k=20&m=1141330750&s=612x612&w=0&h=JTeTer2VRnLlqsJnmLOl7IZBrNuUdtZC-dZp4ekm5Cs=">
+          
+        </div>
+      </div>
+
+
+   
+</template>

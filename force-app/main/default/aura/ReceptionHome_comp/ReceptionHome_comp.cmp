@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
+	<c:receptionhome></c:receptionhome>
+    <c:appFooter></c:appFooter>
+    
+</aura:component>	
